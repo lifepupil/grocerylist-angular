@@ -37,6 +37,7 @@ angular.module('poseidon')
 	};
 
 	$scope.toggleComplete = function(item){
+		console.log($scope.item);
 		Item.edit(item)
 		.then(function(response){
 			$scope.item = response.data.item;
@@ -44,8 +45,8 @@ angular.module('poseidon')
 	}
 
 	$scope.updateItem = function(item) {
-		// console.log(item);
-		Item.edit(item)
+		console.log($scope.item);
+		Item.edit($scope.item)
 		.then(function(response) {
 			// $scope.items
 			$scope.item = response.data.item;

@@ -7,7 +7,6 @@ angular.module('poseidon')
 	}
 
 	Item.edit = function(item){
-		// console.log(item._id, item);
 		return $http.put(nodeUrl + '/items/' + item._id, item);
 	};
 

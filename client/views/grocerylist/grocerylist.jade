@@ -18,8 +18,8 @@ h1 grocerylist
 					option Low
 					option Medium
 					option High
-				label Picked up?
-				input.form-control(type='checkbox', ng-model='item.pickedUp')
+				//- label Picked up?
+				//- input.form-control(type='checkbox', ng-model='item.pickedUp')
 			
 
 		.col-xs-3.col-xs-offset-2
@@ -29,12 +29,12 @@ h1 grocerylist
 			#camera
 			img#photo(ng-src='{{item.photo}}')
 .row
-	.col-xs-2
-		button.btn.btn-success.form-control(ng-show='!isEdit', ng-click='addItem(item)') Add Item
-		button.btn.btn-success.form-control(ng-show='isEdit', ng-click='updateItem(item)') Edit Item
+	.col-xs-2.col-xs-offset-4
+		button.btn.btn-success.form-control.center-block(ng-show='!isEdit', ng-click='addItem(item)') Add Item
+		button.btn.btn-success.form-control.center-block(ng-show='isEdit', ng-click='updateItem(item)') Edit Item
+
 		
-		
-.row
+.row#grocerylist
 	table.table.table-striped
 		thead
 			tr
@@ -56,6 +56,6 @@ h1 grocerylist
 				td {{item.aisle}}
 				td: input(type='checkbox', ng-model='item.pickedUp', ng-click='toggleComplete(item)')
 				td {{item.priority}}
-				td: img(ng-src='{{item.photo}}')
+				td: img.groceryprev(ng-src='{{item.photo}}')
 				td {{item.createdAt | date: 'medium'}}
 				
