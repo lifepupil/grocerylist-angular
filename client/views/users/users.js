@@ -2,6 +2,7 @@
 
 angular.module('poseidon')
 .controller('UsersCtrl', function($scope, $state, $window, User){
+
   $scope.name = $state.current.name;
 
   $scope.oauth = function(provider) {

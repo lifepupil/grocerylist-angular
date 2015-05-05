@@ -11,6 +11,10 @@ angular.module('poseidon')
       $rootScope.afUser = $firebaseObject($rootScope.fbUser);
 
       $http.defaults.headers.common.Authorization = 'Bearer ' + data.token;
+      User.findOrCreate()
+      .then(function() {
+        $state.go('home');
+      })
 
     }else{
       $rootScope.activeUser = null;

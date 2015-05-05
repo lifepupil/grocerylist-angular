@@ -2,4 +2,4 @@
 
 angular.module('poseidon')
 .constant('firebaseUrl', 'https://facebook-cdr.firebaseio.com/')
-.constant('nodeUrl', 'localhost:8000');
+.constant('nodeUrl', 'http://localhost:8000');
