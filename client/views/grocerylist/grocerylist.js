@@ -36,6 +36,13 @@ angular.module('poseidon')
 		$scope.item = item;
 	};
 
+	$scope.toggleComplete = function(item){
+		Item.edit(item)
+		.then(function(response){
+			$scope.item = response.data.item;
+		})
+	}
+
 	$scope.updateItem = function(item) {
 		// console.log(item);
 		Item.edit(item)
@@ -55,8 +62,9 @@ angular.module('poseidon')
 	};
 
 	$scope.takePhoto = function() {
-		$window.Webcam.snap(function(dataUrl){
-			$scope.item.photo = dataUrl;
+		$window.Webcam.snap(function(dataUri){
+			console.log($scope.item);
+			$scope.item.photo = dataUri;
 		});
 	};
 });

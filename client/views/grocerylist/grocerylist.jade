@@ -2,7 +2,7 @@ h1 grocerylist
 
 .row
 	form('GroceryList', novalidate)
-		.col-xs-4
+		.col-xs-4.col-xs-offset-2
 			.form-group
 				label Grocery Item
 				input.form-control(type='text', ng-model='item.name')
@@ -21,16 +21,13 @@ h1 grocerylist
 				label Picked up?
 				input.form-control(type='checkbox', ng-model='item.pickedUp')
 			
-.row
-	.col-xs-3.col-xs-offset-2
-		button.btn.btn-success(ng-click='cameraOn()') Start
-		button.btn.btn-success(ng-click='cameraOff()') Stop
-		button.btn.btn-success(ng-click='takePhoto()') Snap
-.row		
-	.col-xs-3
-		#camera
-	.col-xs-2
-		img#photo(ng-src='{{item.photo}}')
+
+		.col-xs-3.col-xs-offset-2
+			button.btn.btn-success(ng-click='cameraOn()') Start
+			button.btn.btn-success(ng-click='cameraOff()') Stop
+			button.btn.btn-success(ng-click='takePhoto()') Snap	
+			#camera
+			img#photo(ng-src='{{item.photo}}')
 .row
 	.col-xs-2
 		button.btn.btn-success.form-control(ng-show='!isEdit', ng-click='addItem(item)') Add Item
@@ -51,13 +48,13 @@ h1 grocerylist
 				th Photo
 				th Created At
 		tbody
-			tr(ng-repeat='item in items')
+			tr(ng-repeat='item in items', ng-class='{completed: item.pickedUp}')
 				td: button.btn-warning.btn-xs(ng-click='destroy(item)') X
 				td: button.btn-info.btn-xs(ng-click='edit(item)') Edit
 				td {{item.name}}
 				td {{item.quantity}}
 				td {{item.aisle}}
-				td {{item.pickedUp}}
+				td: input(type='checkbox', ng-model='item.pickedUp', ng-click='toggleComplete(item)')
 				td {{item.priority}}
 				td: img(ng-src='{{item.photo}}')
 				td {{item.createdAt | date: 'medium'}}
