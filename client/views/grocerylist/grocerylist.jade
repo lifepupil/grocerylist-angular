@@ -3,19 +3,23 @@ h1 grocerylist
 .row
 	form('GroceryList', novalidate)
 		.col-xs-4
-			label Grocery Item
-			input.form-control(type='text', ng-model='item.name')
-			label Quantity
-			input.form-control(type='number', ng-model='item.quantity')
-			label Aisle
-			input.form-control(type='text', ng-model='item.aisle')
-			label Picked up?
-			input.form-control(type='checkbox', ng-model='item.pickedUp')
-			label Priority
-			select.form-control(ng-model='item.priority')
-				option Low
-				option Medium
-				option High
+			.form-group
+				label Grocery Item
+				input.form-control(type='text', ng-model='item.name')
+			.form-group
+				label Quantity
+				input.form-control(type='number', ng-model='item.quantity')
+			.form-group
+				label Aisle
+				input.form-control(type='text', ng-model='item.aisle')
+			.form-group
+				label Priority
+				select.form-control(ng-model='item.priority')
+					option Low
+					option Medium
+					option High
+				label Picked up?
+				input.form-control(type='checkbox', ng-model='item.pickedUp')
 			
 .row
 	.col-xs-3.col-xs-offset-2
@@ -29,24 +33,32 @@ h1 grocerylist
 		img#photo(ng-src='{{item.photo}}')
 .row
 	.col-xs-2
-		button.btn.btn-success.form-control(ng-click='addItem(item)') Add Item
+		button.btn.btn-success.form-control(ng-show='!isEdit', ng-click='addItem(item)') Add Item
+		button.btn.btn-success.form-control(ng-show='isEdit', ng-click='updateItem(item)') Edit Item
+		
 		
 .row
 	table.table.table-striped
 		thead
 			tr
+				th Delete
+				th Edit
 				th Name
 				th Quantity
 				th Aisle
 				th Picked Up?
 				th Priority
 				th Photo
+				th Created At
 		tbody
 			tr(ng-repeat='item in items')
+				td: button.btn-warning.btn-xs(ng-click='destroy(item)') X
+				td: button.btn-info.btn-xs(ng-click='edit(item)') Edit
 				td {{item.name}}
 				td {{item.quantity}}
 				td {{item.aisle}}
 				td {{item.pickedUp}}
 				td {{item.priority}}
-				td {{item.photo}}
+				td: img(ng-src='{{item.photo}}')
+				td {{item.createdAt | date: 'medium'}}
 				
